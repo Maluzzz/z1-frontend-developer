@@ -1,46 +1,80 @@
-# Getting Started with Create React App
+<div align="center">
+  <h1 align="center"> 💳️ BankClient App</h3>
+  <p align="center">
+       App de BankClient donde se toma una foto y se comprueba con una API si esta es válida o no. 
+    <br />
+  </p>
+  <p>
+       <a href="https://contacts-app-maaluuz.vercel.app/">
+     🚀 BankClient en producción! </a>
+    </p>
+</div>
+<hr/>
+   <br />
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ⚙️ ¿Qué he usado? 
 
-## Available Scripts
+Herramientas & librerías usadas para el projecto:
 
-In the project directory, you can run:
+* [React.js](https://reactjs.org/)
+* [Typescript](https://www.typescriptlang.org/)
+* [React-routes](https://reactrouter.com/)
+* [Eslint](https://eslint.org/)
+* [Prettier](https://prettier.io/docs/en/configuration.html)
+* [Jest](https://jestjs.io/)
+* [CircleCI](https://circleci.com/)
+<br/>
+<br/>
+## 📝 Requisitos 
+Node tiene que estar instalado en el sistema, puedes:
+* Instalar node directamente [Node.js](https://nodejs.org/en/)
+* Usa [nvm](https://github.com/nvm-sh/nvm)
 
-### `yarn start`
+<hr/>
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 👨‍💻 Lanza proyecto en Local 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+1. Clona el repositorio
+```
+git clone https://github.com/Maluzzz/z1-frontend-developer.git
+```
+2. Sitúate en la carpeta del proyecto
+```
+cd z1-frontend-developer
+```
+3. Instala las librerías
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npm i
+```
 
-### `yarn build`
+4. Lanza la app
+```
+npm run start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Este último paso debe abrir el navegador de tu ordenador con la url `localhost:3000/`
+y debes ver una pantalla como esta:
+<br/>
+<br/>
+<img src="https://i.ibb.co/FWPRkDM/image-1.png"
+     alt="image"
+     style="float: left; margin-right: 10px;" />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+&nbsp;&nbsp;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚧 Roadmap y mejoras 
 
-### `yarn eject`
+- \[x] Añadir tests a componentes
+- \[ ] Añadir test a container
+- \[ ] Si no se encuentra cámara disponible mostrar mensaje
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<br/>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🙋 Comentarios
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br/>
