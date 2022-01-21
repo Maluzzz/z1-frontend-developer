@@ -25,6 +25,7 @@ Herramientas & librerías usadas para el projecto:
 * [CircleCI](https://circleci.com/)
 <br/>
 <br/>
+
 ## 📝 Requisitos 
 Node tiene que estar instalado en el sistema, puedes:
 * Instalar node directamente [Node.js](https://nodejs.org/en/)
@@ -75,6 +76,4 @@ y debes ver una pantalla como esta:
 
 ## 🙋 Comentarios
 
-
-
-<br/>
+(Comentarios finales sobre el proyecto)
