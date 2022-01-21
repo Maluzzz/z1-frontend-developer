@@ -1,18 +1,31 @@
+/* eslint-disable no-undef */
 import '@testing-library/jest-dom'
+import React from 'react'
+import { render, screen } from '@testing-library/react'
 
-import { render } from '@testing-library/react'
-
-import { ButtonLink } from './index'
 import { BrowserRouter } from 'react-router-dom'
+import { ButtonLink } from './index'
 
-describe("Testing component ButtonLink", () => {
-      test("should return the component with the upercase text on in", () => {
-            const to = '/fake-path'
-            const secondary = true
-            const text = 'text'
-            const { getByText } = render(<BrowserRouter>
-                  <ButtonLink secondary={secondary} to={to} text='text' />
-            </BrowserRouter>)
-            expect(getByText(text.toUpperCase())).toBeInTheDocument()
-      })
+describe('Testing component ButtonLink', () => {
+  const to = '/fake-path'
+  const secondary = true
+  const text = 'text'
+
+  beforeEach(() => {
+    render(
+      <BrowserRouter>
+        <ButtonLink secondary={secondary} to={to} text={text} />
+      </BrowserRouter>,
+    )
+  })
+
+  test('should return the component with the upercase text on in', () => {
+    expect(screen.getByText(text.toUpperCase())).toBeInTheDocument()
+  })
+  test('should return the component with the href link', () => {
+    const linkElement = screen.getByText(text.toUpperCase())
+    const path = linkElement.getAttribute('href')
+    expect(linkElement).toBeInTheDocument()
+    expect(path).toBe(to)
+  })
 })

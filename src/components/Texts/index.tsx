@@ -7,12 +7,13 @@ export const Title = styled.h1`
   line-height: 24px;
   text-align: center;
   margin: 0;
-  color: ${({ color }: { color?: string }) => color ? color : '#000000'} ;
+  color: ${({ color }: { color?: string }) => (color || '#000000')};
 `
 export const Text = styled.p`
   font-size: 16px;
   letter-spacing: 0;
   line-height: 24px;
   text-align: center;
-  color: ${({ color }: { color?: string }) => color ? color : '#000000'} ;
+  color: ${({ color }: { color?: string }) => (color || '#000000')};
 `
+export default Text

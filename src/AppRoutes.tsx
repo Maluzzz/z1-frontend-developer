@@ -9,14 +9,8 @@ import './App.css'
 function AppRoutes() {
   return (
     <Routes>
-      <Route
-        path='/'
-        element={<HomeView />}
-      />
-      <Route
-        path='/take-photo'
-        element={<PhotoView />}
-      />
+      <Route path='/' element={<HomeView />} />
+      <Route path='/take-photo' element={<PhotoView />} />
     </Routes>
   )
 }

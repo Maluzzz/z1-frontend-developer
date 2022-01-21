@@ -1,54 +1,30 @@
 import React from 'react'
-import styled from 'styled-components'
 
-import skeletonPlaceholder from '../../assets/id_bg.svg'
-import { ButtonLink } from '../../components/Button/'
-import { Label } from '../../components/Label/Label'
+import { ButtonLink } from '../../components/Button'
+import { Label } from '../../components/Label'
+import { cardId } from '../../model/types'
+import { CardContainer, LabelContainer } from './styles'
 
-export type cardImg = {
-  status: string,
-  img: string,
+const types = {
+  Accepted: 'success',
+  Rejected: 'danger',
+  Empty: 'none',
 }
 
-export const CardBox = ({ status, img }: cardImg) => {
+export const CardBox = ({ status, img }: cardId) => {
   const valid = status === 'Accepted'
+  const buttonText = img === '' ? 'Take Picture' : 'Retake Picture'
+
   return (
-    img === '' ? (<EmptyCardBox />) : (
+    <div>
       <CardContainer valid={valid} img={img}>
-        {!valid && <ButtonLink to='/take-photo' text='Retake Picture' />}
-        <Label valid={valid} text={status.toUpperCase()} />
-      </CardContainer>)
+        {!valid && <ButtonLink to='/take-photo' text={buttonText} />}
+      </CardContainer>
+      <LabelContainer>
+        <Label type={types[status]} text={status.toUpperCase()} />
+      </LabelContainer>
+    </div>
   )
 }
 
-const EmptyCardBox = () => {
-  return (
-    <CardContainer>
-      <ButtonLink to='/take-photo' text='Take Picture' />
-    </CardContainer>
-  )
-}
-
-
-
-interface CardContainerProps {
-  img?: string;
-  valid?: boolean;
-}
-
-const CardContainer = styled.div<CardContainerProps>`
-  width: 260px;
-  height: 160px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0px auto;
-  border: ${({ img }) => img ? '2px' : '0px'} solid ${({ valid }) => valid ? '#69CC8B' : '#C00000'} ;
-  border-radius: 12px;
-  background-image: url(${({ img }) => img ? img : skeletonPlaceholder});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position-x: center;
-  background-position-y: center;
-`
+export default CardBox

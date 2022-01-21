@@ -8,6 +8,5 @@ ReactDOM.render(
   <BrowserRouter>
     <AppRoutes />
   </BrowserRouter>,
-  document.getElementById('root')
-);
-
+  document.getElementById('root'),
+)
