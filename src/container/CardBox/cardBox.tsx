@@ -1,55 +1,54 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import imagenExample from '../../assets/id_card.png';
-import { Button } from '../../components/Button/button';
+import skeletonPlaceholder from '../../assets/id_bg.svg'
+import { ButtonLink } from '../../components/Button/'
+import { Label } from '../../components/Label/Label'
 
-export const CardBox = ({ status }: { status: string }) => {
-  const isRejected = status !== 'Accepted'
+export type cardImg = {
+  status: string,
+  img: string,
+}
+
+export const CardBox = ({ status, img }: cardImg) => {
+  const valid = status === 'Accepted'
   return (
-    <div>
-      <CardContainer isRejected={isRejected}>
-        {isRejected ? <Button text='Retake Picture' /> : ''}
-        <Label isRejected={isRejected}>{status.toUpperCase()}</Label>
-      </CardContainer>
-
-    </div>
+    img === '' ? (<EmptyCardBox />) : (
+      <CardContainer valid={valid} img={img}>
+        {!valid && <ButtonLink to='/take-photo' text='Retake Picture' />}
+        <Label valid={valid} text={status.toUpperCase()} />
+      </CardContainer>)
   )
 }
 
-const CardContainer = styled.div`
-  width:260px;
-  box-sizing: border-box;
+const EmptyCardBox = () => {
+  return (
+    <CardContainer>
+      <ButtonLink to='/take-photo' text='Take Picture' />
+    </CardContainer>
+  )
+}
+
+
+
+interface CardContainerProps {
+  img?: string;
+  valid?: boolean;
+}
+
+const CardContainer = styled.div<CardContainerProps>`
+  width: 260px;
   height: 160px;
-  border: 2px solid ${({ isRejected }: { isRejected: boolean }) => isRejected ? '#C00000' : '#69CC8B'} ;
-  border-radius: 12px;
-  background-image: url(${imagenExample});
-  background-size: contain;
-  background-size: cover;
-  background-size: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin:0px auto;
-  justify-content: center;
-`
-
-
-const Label = styled.div`
-  height: 30px;
-  width: 105px;
-  position:relative;
-  top: 65px;
-  border-radius: 4px;
-  background-color: ${({ isRejected }: { isRejected: boolean }) => isRejected ? '#C00000' : '#69CC8B'} ;
-  font-size: 12px;
-  font-weight: bold;
-  color: white;
-  display:flex;
   justify-content: center;
   align-items: center;
-  letter-spacing: 0.75px;
-  margin-top: -20px;
-  margin-left: 120px;
-  line-height: 12px;
+  margin: 0px auto;
+  border: ${({ img }) => img ? '2px' : '0px'} solid ${({ valid }) => valid ? '#69CC8B' : '#C00000'} ;
+  border-radius: 12px;
+  background-image: url(${({ img }) => img ? img : skeletonPlaceholder});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
 `
