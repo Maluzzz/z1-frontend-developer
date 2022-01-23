@@ -27,6 +27,7 @@ export const CaptureBox = () => {
     showCanvas: false,
     loading: false,
   })
+
   const removeVideo = (status) => {
     if (videoElement.current.srcObject) {
       const stream = videoElement.current.srcObject as MediaStream
@@ -47,6 +48,8 @@ export const CaptureBox = () => {
     const canvas = document.getElementById('canvas') as HTMLCanvasElement
     if (!canvas) return
     const context = canvas.getContext('2d')
+    canvas.width = 260
+    canvas.height = 160
     context?.drawImage(videoElement.current, 0, 0, canvas.width, canvas.height)
 
     setState((s) => ({ ...s, loading: true }))

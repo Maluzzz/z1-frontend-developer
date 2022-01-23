@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import skeletonPlaceholder from '../../assets/id_bg.svg'
+import * as theme from '../../model/theme'
 
 interface CardContainerProps {
   img?: string
@@ -16,7 +17,7 @@ export const CardContainer = styled.div<CardContainerProps>`
   align-items: center;
   margin: 0px auto;
   border: ${({ img }) => (img ? '2px' : '0px')} solid
-    ${({ valid }) => (valid ? '#69CC8B' : '#C00000')};
+    ${({ valid }) => (valid ? theme.SUCCESS : theme.ERROR)};
   border-radius: 12px;
   background-image: url(${({ img }) => (img || skeletonPlaceholder)});
   background-size: cover;

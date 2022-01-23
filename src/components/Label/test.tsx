@@ -13,7 +13,7 @@ describe('Testing component Label', () => {
     expect(screen.getByText('Accepted')).toBeInTheDocument()
     expect(path).toContain('SvgrURL')
   })
-  test('should return the component empty component', () => {
+  test('should return the component empty', () => {
     render(<Label type='no-exist' text='Accepted' />)
     // TO.DO
   })

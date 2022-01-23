@@ -3,16 +3,17 @@ import React from 'react'
 import closeIcon from '../../assets/close.svg'
 import tickIcon from '../../assets/tick.svg'
 import LabelBox from './styles'
+import * as theme from '../../model/theme'
 
 const getLabelByType = (text: string) => ({
   success: (
-    <LabelBox color='#69CC8B'>
+    <LabelBox color={theme.SUCCESS}>
       <img src={tickIcon} alt='icon' />
       {text}
     </LabelBox>
   ),
   danger: (
-    <LabelBox color='#C00000'>
+    <LabelBox color={theme.ERROR}>
       <img src={closeIcon} alt='icon' />
       {text}
     </LabelBox>

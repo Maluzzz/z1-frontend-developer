@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import * as theme from '../../model/theme'
+
 export const HeaderContainer = styled.header`
   font-size: 1.5em;
   text-align: center;
@@ -10,7 +12,7 @@ export const HeaderContainer = styled.header`
 `
 export const HeaderTitle = styled.div`
   height: 24px;
-  color: #2f0079;
+  color: ${theme.PRIMARY};
   font-size: 21px;
   font-style: italic;
   font-weight: bold;

@@ -16,9 +16,7 @@ export function HomeView() {
           <Title>Scan your ID</Title>
           <Text>
             Take a picture.
-            {' '}
             <br />
-            {' '}
             It may take time to validate your personal
             information.
           </Text>
