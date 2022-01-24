@@ -1,4 +1,6 @@
-export async function getVideoStream(constraints) {
+import { videoConstraint } from '../model/types'
+
+export async function getVideoStream(constraints: videoConstraint) {
   const stream = await navigator.mediaDevices.getUserMedia(constraints)
   return stream
 }

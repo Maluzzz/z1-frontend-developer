@@ -8,8 +8,9 @@ import bulb from '../../assets/bulb.svg'
 import tick from '../../assets/green_icon.svg'
 import TextIcon, { ImageCanvas, Video } from './styles'
 import getVideoStream, { getCanvasAndContext, removeVideoStream } from '../../utils/videoStream'
+import { videoConstraint } from '../../model/types'
 
-const constraints = {
+const constraints:videoConstraint = {
   audio: false,
   video: {
     width: 260,
