@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import { PhotoView } from './container/PhotoView/PhotoView'
-import { HomeView } from './container/HomeView/HomeView'
+import { HomeView } from './container/HomeView'
 
 import './App.css'
 
