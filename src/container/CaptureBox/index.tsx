@@ -9,6 +9,7 @@ import tick from '../../assets/green_icon.svg'
 import TextIcon, { ImageCanvas, Video } from './styles'
 import getVideoStream, { getCanvasAndContext, removeVideoStream } from '../../utils/videoStream'
 import { videoConstraint } from '../../model/types'
+import { captureBoxState } from './types'
 
 const constraints:videoConstraint = {
   audio: false,
@@ -18,14 +19,27 @@ const constraints:videoConstraint = {
   },
 }
 
+const getInfoAndIconToDisplay = (valid:boolean, showCanvas:boolean, error: boolean) => {
+  const key = `${valid}-${showCanvas}-${error}`
+  // To.do review this to make more redeable?
+  return {
+    'true-true-false': { text: 'Picture Taken!', icon: tick },
+    'false-false-false': { text: 'RoomLighting is too low', icon: bulb },
+    'false-false-true': { text: 'Ups Something went wrong', icon: bulb },
+  }[key] || { text: '', icon: '' }
+}
+
 export const CaptureBox = () => {
   const videoElement = useRef<HTMLVideoElement>(null)
   const navigate = useNavigate()
   const { saveCardId } = useCardID()
-  const [{ valid, showCanvas, loading }, setState] = useState({
+  const [{
+    valid, showCanvas, loading, videoError,
+  }, setState] = useState<captureBoxState>({
     valid: false,
     showCanvas: false,
     loading: false,
+    videoError: false,
   })
 
   const removeVideo = (status: string) => {
@@ -47,6 +61,7 @@ export const CaptureBox = () => {
         valid: outcome.includes('Approved'),
         showCanvas: true,
         loading: false,
+        videoError: false,
       })
       removeVideo(status)
     })
@@ -58,25 +73,18 @@ export const CaptureBox = () => {
       videoElement.current!.srcObject = stream
       videoElement.current!.play()
       setTimeout(() => takePhoto(), 5000)
-    }).catch(() => {})
+    }).catch(() => setState((c) => ({ ...c, videoError: true })))
   }, [videoElement])
-
+  const { text, icon } = getInfoAndIconToDisplay(valid, showCanvas, videoError)
   return (
     <div>
       <ImageCanvas id='canvas' valid={loading ? true : valid} showCanvas={showCanvas} />
       <Video ref={videoElement} showVideo={!showCanvas} />
       {loading && <Text color='#FFFFFF'>Checking image... </Text>}
-      {valid && showCanvas ? (
-        <TextIcon>
-          <img src={tick} alt='icon' />
-          Picture Taken!
-        </TextIcon>
-      ) : (
-        <TextIcon>
-          <img src={bulb} alt='icon' />
-          Room lighting is too low
-        </TextIcon>
-      ) }
+      <TextIcon>
+        {icon && <img src={icon} alt='icon' />}
+        {text}
+      </TextIcon>
     </div>
   )
 }
