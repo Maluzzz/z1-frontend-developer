@@ -57,8 +57,7 @@ export const CaptureBox = () => {
       videoElement.current!.srcObject = stream
       videoElement.current!.play()
       setTimeout(() => takePhoto(), 5000)
-    // eslint-disable-next-line no-console
-    }).catch((e) => console.error('ERROR', e))
+    }).catch(() => {})
   }, [videoElement])
 
   return (
