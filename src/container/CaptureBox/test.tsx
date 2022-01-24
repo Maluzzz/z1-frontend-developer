@@ -20,8 +20,8 @@ Object.defineProperty(global.navigator, 'mediaDevices', {
   },
 })
 
-// describe('Testing component CaptureBox', () => {
-//   test('should return the component ', () => {
-//     render(<BrowserRouter><CaptureBox /></BrowserRouter>)
-//   })
-// })
+describe('Testing component CaptureBox', () => {
+  test('should return the component ', () => {
+    //     render(<BrowserRouter><CaptureBox /></BrowserRouter>)
+  })
+})

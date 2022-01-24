@@ -3,7 +3,7 @@ import React from 'react'
 import { Header } from '../../components/Header'
 import { Text, Title } from '../../components/Texts'
 import { useCardID } from '../../utils/useCardID'
-import { CardBox } from '../CardBox/cardBox'
+import { CardBox } from '../CardBox'
 import Container from './styles'
 
 export function HomeView() {

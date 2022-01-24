@@ -1,12 +1,8 @@
 import styled from 'styled-components'
 
 import skeletonPlaceholder from '../../assets/id_bg.svg'
+import { CardContainerProps } from './types'
 import * as theme from '../../model/theme'
-
-interface CardContainerProps {
-  img?: string
-  valid?: boolean
-}
 
 export const CardContainer = styled.div<CardContainerProps>`
   width: 260px;
@@ -31,6 +27,5 @@ export const LabelContainer = styled.div`
     position: relative;
     bottom: 20px;
     left: 140px;
-
 `
 export default CardContainer
