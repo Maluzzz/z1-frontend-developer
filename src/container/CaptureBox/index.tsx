@@ -2,13 +2,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import fetchApi from '../../utils/fetcher'
-
 import { Text } from '../../components/Texts'
 import { useCardID } from '../../utils/useCardID'
-
 import bulb from '../../assets/bulb.svg'
 import tick from '../../assets/green_icon.svg'
 import TextIcon, { ImageCanvas, Video } from './styles'
+import getVideoStream, { getCanvasAndContext, removeVideoStream } from '../../utils/videoStream'
 
 const constraints = {
   audio: false,
@@ -28,31 +27,17 @@ export const CaptureBox = () => {
     loading: false,
   })
 
-  const removeVideo = (status) => {
-    if (videoElement.current.srcObject) {
-      const stream = videoElement.current.srcObject as MediaStream
-      const tracks = stream.getTracks()
-      tracks.forEach((track: any) => {
-        track.stop()
-      })
-      videoElement.current.srcObject = null
-      if (videoElement.current.parentNode) {
-        videoElement.current.parentNode.removeChild(videoElement.current)
-      }
-    }
+  const removeVideo = (status: string) => {
+    removeVideoStream(videoElement.current!.srcObject as MediaStream)
     if (status === 'Accepted') {
       navigate('/')
     }
   }
   const takePhoto = () => {
-    const canvas = document.getElementById('canvas') as HTMLCanvasElement
-    if (!canvas) return
-    const context = canvas.getContext('2d')
-    canvas.width = 260
-    canvas.height = 160
+    if (!videoElement.current) return
+    const { context, canvas } = getCanvasAndContext()
     context?.drawImage(videoElement.current, 0, 0, canvas.width, canvas.height)
-
-    setState((s) => ({ ...s, loading: true }))
+    setState((s) => ({ ...s, loading: true, showCanvas: true }))
     fetchApi(canvas.toDataURL()).then((res) => {
       const { outcome } = res.summary
       const status = outcome.includes('Approved') ? 'Accepted' : 'Rejected'
@@ -68,35 +53,30 @@ export const CaptureBox = () => {
 
   useEffect(() => {
     if (!videoElement) return
-    navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-      if (videoElement.current) {
-        const video = videoElement.current
-        video.srcObject = stream
-        video.play()
-      }
-    })
-    setTimeout(() => takePhoto(), 5000)
+    getVideoStream(constraints).then((stream) => {
+      videoElement.current!.srcObject = stream
+      videoElement.current!.play()
+      setTimeout(() => takePhoto(), 5000)
+    // eslint-disable-next-line no-console
+    }).catch((e) => console.error('ERROR', e))
   }, [videoElement])
 
   return (
     <div>
-      <ImageCanvas id='canvas' valid={valid} showCanvas={showCanvas} />
-      <Video ref={videoElement} />
+      <ImageCanvas id='canvas' valid={loading ? true : valid} showCanvas={showCanvas} />
+      <Video ref={videoElement} showVideo={!showCanvas} />
       {loading && <Text color='#FFFFFF'>Checking image... </Text>}
-      {valid && (
+      {valid && showCanvas ? (
         <TextIcon>
           <img src={tick} alt='icon' />
           Picture Taken!
         </TextIcon>
-      )}
-      {!valid && !showCanvas ? (
+      ) : (
         <TextIcon>
           <img src={bulb} alt='icon' />
           Room lighting is too low
         </TextIcon>
-      ) : (
-        ''
-      )}
+      ) }
     </div>
   )
 }

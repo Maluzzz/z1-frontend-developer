@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ButtonLink } from '../../components/Button'
 import { Text, Title } from '../../components/Texts'
-import { CaptureBox } from '../CaptureBox/CaptureBox'
+import { CaptureBox } from '../CaptureBox'
 import { Background, Container } from './styles'
 
 export function PhotoView() {

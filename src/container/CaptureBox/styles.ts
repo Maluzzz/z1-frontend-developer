@@ -10,10 +10,11 @@ export const ImageCanvas = styled.canvas<{ valid: boolean; showCanvas: boolean }
   }
 `
 
-export const Video = styled.video`
+export const Video = styled.video<{showVideo: boolean}>`
   width: 260px;
   border: 2px solid ${theme.SUCCESS};
   border-radius: 12px;
+  display: ${({ showVideo }) => (showVideo ? 'block' : 'none')};
 `
 
 export const TextIcon = styled.div`
