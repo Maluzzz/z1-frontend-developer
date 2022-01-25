@@ -9,6 +9,6 @@ describe('Testing component PhotoView Page', () => {
   test('should return the component with the default button on in', () => {
     const { getByText } = render(<BrowserRouter><PhotoView /></BrowserRouter>)
     expect(getByText('CANCEL')).toBeInTheDocument()
-    expect(getByText('Room lighting is too low')).toBeInTheDocument()
+    expect(getByText('RoomLighting is too low')).toBeInTheDocument()
   })
 })
