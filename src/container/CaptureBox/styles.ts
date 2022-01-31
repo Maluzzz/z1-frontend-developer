@@ -1,10 +1,8 @@
 import styled from 'styled-components'
 
-import * as theme from '../../model/theme'
-
 export const ImageCanvas = styled.canvas<{ valid: boolean; showCanvas: boolean }>`
    {
-    border: 2px solid ${({ valid }) => (valid ? theme.SUCCESS : theme.ERROR)};
+    border: 2px solid ${({ valid, theme }) => (valid ? theme.colors.success : theme.colors.error)};
     border-radius: 12px;
     display: ${({ showCanvas }) => (showCanvas ? 'block' : 'none')};
   }
@@ -12,7 +10,7 @@ export const ImageCanvas = styled.canvas<{ valid: boolean; showCanvas: boolean }
 
 export const Video = styled.video<{showVideo: boolean}>`
   width: 260px;
-  border: 2px solid ${theme.SUCCESS};
+  border: 2px solid ${({ theme }) => theme.colors.success};
   border-radius: 12px;
   display: ${({ showVideo }) => (showVideo ? 'block' : 'none')};
 `

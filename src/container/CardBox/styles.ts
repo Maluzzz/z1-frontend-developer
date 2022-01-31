@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import skeletonPlaceholder from '../../assets/id_bg.svg'
 import { CardContainerProps } from './types'
-import * as theme from '../../model/theme'
 
 export const CardContainer = styled.div<CardContainerProps>`
   width: 260px;
@@ -13,10 +12,10 @@ export const CardContainer = styled.div<CardContainerProps>`
   align-items: center;
   margin: 0px auto;
   border: ${({ img }) => (img ? '2px' : '0px')} solid
-    ${({ valid }) => (valid ? theme.SUCCESS : theme.ERROR)};
+    ${({ valid, theme }) => (valid ? theme.colors.success : theme.colors.error)};
   border-radius: 12px;
   background-image: url(${({ img }) => (img || skeletonPlaceholder)});
-  background-size: cover;
+  background-size: initial;
   background-repeat: no-repeat;
   background-position-x: center;
   background-position-y: center;
