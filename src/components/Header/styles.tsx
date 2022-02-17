@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { HeaderTitleProps } from './types'
 
 export const HeaderContainer = styled.header`
   font-size: 1.5em;
@@ -8,9 +9,9 @@ export const HeaderContainer = styled.header`
   padding-left: 0.5em;
   align-items: center;
 `
-export const HeaderTitle = styled.div`
+export const HeaderTitle = styled.div<HeaderTitleProps>`
   height: 24px;
-  color: ${(({ theme }) => theme.colors.primary)};
+  color: ${(({ color }) => color)};
   font-size: 21px;
   font-style: italic;
   font-weight: bold;

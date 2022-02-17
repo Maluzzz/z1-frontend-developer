@@ -1,19 +1,20 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
+const commonStyle = css`
+  letter-spacing: 0;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: ${({ color }: { color?: string }) => (color || '#000000')};
+  text-align: center;
+`
 export const Title = styled.h1`
+  ${commonStyle};
   font-size: 21px;
   font-weight: bold;
-  letter-spacing: 0;
-  line-height: 24px;
-  text-align: center;
   margin: 0;
-  color: ${({ color }: { color?: string }) => (color || '#000000')};
 `
 export const Text = styled.p`
+  ${commonStyle};
   font-size: 16px;
-  letter-spacing: 0;
-  line-height: 24px;
-  text-align: center;
-  color: ${({ color }: { color?: string }) => (color || '#000000')};
 `
 export default Text

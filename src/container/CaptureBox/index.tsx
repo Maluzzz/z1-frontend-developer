@@ -21,7 +21,7 @@ const constraints:videoConstraint = {
 
 const getInfoAndIconToDisplay = (valid:boolean, showCanvas:boolean, error: boolean) => {
   const key = `${valid}-${showCanvas}-${error}`
-  // To.do review this to make more redeable?
+  // To.do review this to make more redeable? This can be a state machine
   return {
     'true-true-false': { text: 'Picture Taken!', icon: tick },
     'false-false-false': { text: 'RoomLighting is too low', icon: bulb },
@@ -77,7 +77,7 @@ export const CaptureBox = () => {
   }, [videoElement])
   const { text, icon } = getInfoAndIconToDisplay(valid, showCanvas, videoError)
   return (
-    <div>
+    <>
       <ImageCanvas id='canvas' valid={loading ? true : valid} showCanvas={showCanvas} />
       <Video ref={videoElement} showVideo={!showCanvas} />
       {loading && <Text color='#FFFFFF'>Checking image... </Text>}
@@ -85,7 +85,7 @@ export const CaptureBox = () => {
         {icon && <img src={icon} alt='icon' />}
         {text}
       </TextIcon>
-    </div>
+    </>
   )
 }
 
