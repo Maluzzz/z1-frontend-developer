@@ -9,5 +9,5 @@ export type ButtonLinkProps = {
 
 export type ButtonProps = LinkProps & {
   theme: DefaultTheme
-  secondary?: boolean | undefined
+  $secondary?: boolean | undefined
 }

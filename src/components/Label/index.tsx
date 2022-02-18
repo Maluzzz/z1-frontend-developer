@@ -12,7 +12,6 @@ import LabelBox from './styles'
  */
 export const Label = ({ type, text }: { type: string; text: string }) => {
   const { colors } = useTheme()
-  console.log(colors.error)
   return (
     <div>
       {{

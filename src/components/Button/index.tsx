@@ -6,11 +6,11 @@ import { ButtonLinkProps } from './types'
 export function ButtonLink({
   text,
   to,
-  secondary = false,
+  secondary,
 }: ButtonLinkProps) {
   const theme = useTheme()
   return (
-    <Button to={to} secondary={secondary} theme={theme}>
+    <Button to={to} $secondary={secondary} theme={theme}>
       {text.toUpperCase()}
     </Button>
   )
